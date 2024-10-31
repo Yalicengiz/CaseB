@@ -18,7 +18,8 @@ jobs:
     - name: Build and push Docker image
       uses: docker/build-push-action@v2
       with:
-        context: ./docker
+        context: .
+        file: docker/Dockerfile
         push: true
         tags: yalicengiz/btc_usdt_monitor:latest
       env:
@@ -27,5 +28,5 @@ jobs:
     - name: Deploy to Kubernetes
       run: |
         kubectl apply -f deployment.yaml
-        kubectl apply -f service.yaml
+        kubectl apply -f service.yaml 
 
