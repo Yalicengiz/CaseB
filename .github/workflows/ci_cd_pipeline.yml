@@ -1,9 +1,9 @@
-name: Build and Push Docker Image
+name: Build Docker Image
 
 on:
   push:
     branches:
-      - master
+      - master  # Bu dalda değişiklik olduğunda tetiklenecek
 
 jobs:
   build:
@@ -16,17 +16,10 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
-      - name: Login to Docker Hub
-        uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.DOCKER_HUB_USERNAME }}  
-          password: ${{ secrets.DOCKER_HUB_TOKEN }}      
-
-      - name: Build and push Docker image
+      - name: Build Docker image
         uses: docker/build-push-action@v2
         with:
-          context: .                       
-          file: Dockerfile                 
-          push: true                       
-          tags: yalicengiz/btc_usdt_monitor:latest
+          context: .                       # Repo kök dizini
+          file: Dockerfile                 # Dockerfile'ın yolu
+          push: false                      # İmajı gönderme, false yaparak
 
