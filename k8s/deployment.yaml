@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: btc-monitor
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: btc-monitor
+  template:
+    metadata:
+      labels:
+        app: btc-monitor
+    spec:
+      containers:
+        - name: btc-monitor
+          image: btc_usdt_monitor
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: logs
+              mountPath: /app/logs
+      volumes:
+        - name: logs
+          hostPath:
+            path: /path/to/your/logs
+
