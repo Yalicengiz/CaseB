@@ -3,7 +3,7 @@ name: Build Docker Image
 on:
   push:
     branches:
-      - master  # Bu dalda değişiklik olduğunda tetiklenecek
+      - master
 
 jobs:
   build:
@@ -19,7 +19,7 @@ jobs:
       - name: Build Docker image
         uses: docker/build-push-action@v2
         with:
-          context: .                       # Repo kök dizini
-          file: Dockerfile                 # Dockerfile'ın yolu
-          push: false                      # İmajı gönderme, false yaparak
+          context: .                       
+          file: Dockerfile                 
+          push: false                      
 
